@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap");
+
+/* test mprx */
+
+body {
+    /* display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0; */
+    /* background: linear-gradient(to right, #114357, #F29492, #f64f59); */
+    background-image: url('header.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
