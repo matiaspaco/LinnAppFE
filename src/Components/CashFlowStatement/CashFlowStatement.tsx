@@ -19,12 +19,12 @@ const config = [
     {
       label: "Investing Cashflow",
       render: (company: CompanyCashFlow) =>
-        company.netCashUsedForInvestingActivites,
+        company.otherInvestingActivities,
     },
     {
       label: "Financing Cashflow",
       render: (company: CompanyCashFlow) =>
-        company.netCashUsedProvidedByFinancingActivities,
+        company.netCashProvidedByFinancingActivities,
     },
     {
       label: "Cash At End of Period",
@@ -36,7 +36,7 @@ const config = [
     },
     {
       label: "Issuance Of Stock",
-      render: (company: CompanyCashFlow) => company.commonStockIssued,
+      render: (company: CompanyCashFlow) => company.commonStockIssuance,
     },
     {
       label: "Free Cash Flow",

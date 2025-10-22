@@ -11,14 +11,20 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-console.log(searchCompanies("tsla"));
+// console.log(searchCompanies("tsla"));
 
-root.render(
-  <React.StrictMode>
-    {/* <App /> */}
+root.render(    
     <RouterProvider router={router}/>
-  </React.StrictMode>
 );
+
+// root.render(
+//   <React.StrictMode>
+//     {/* <App /> */}
+    
+//     <RouterProvider router={router}/>
+//   </React.StrictMode>
+// );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

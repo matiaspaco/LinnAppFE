@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {FaHome} from 'react-icons/fa'
 
-type Props = {}
+type Props = { hasKeyMetrics?: boolean | null; }
 
-const Sidebar = (props: Props) => {
+const Sidebar = ({hasKeyMetrics}: Props) => {
+  const disabledClass = !hasKeyMetrics ? "pointer-events-none opacity-50" : "";
   return (
     <nav className="block py-4 px-6 top-0 bottom-0 w-64 bg-white shadow-xl left-0 absolute flex-row flex-nowrap md:z-10 z-9999 transition-all duration-300 ease-in-out transform md:translate-x-0 -translate-x-full">
 
@@ -19,17 +20,17 @@ const Sidebar = (props: Props) => {
             <FaHome/>
                 <h6 className="ml-3">Company Profile</h6>
             </Link>
-            <Link to="income-statement" className="flex md:min-w-full text-bluegray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline">
+            <Link to="income-statement" className= {`flex md:min-w-full text-bluegray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline ${disabledClass}`}>
             <FaHome/>
                 <h6 className="ml-3">Income Statement</h6>
             </Link>
 
-            <Link to="balance-sheet" className="flex md:min-w-full text-bluegray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline">
+            <Link to="balance-sheet" className={`flex md:min-w-full text-bluegray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline ${disabledClass}`}>
             <FaHome/>
                 <h6 className="ml-3">Balance Sheet</h6>
             </Link>
 
-            <Link to="cashflow-statement" className="flex md:min-w-full text-bluegray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline">
+            <Link to="cashflow-statement" className={`flex md:min-w-full text-bluegray-500 text-medium uppercase font-bold block pt--1 pb-4 no-underline ${disabledClass}`}>
             <FaHome/>
                 <h6 className="ml-3">Cashflow statement</h6>
             </Link>

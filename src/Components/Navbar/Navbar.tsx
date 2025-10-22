@@ -7,7 +7,7 @@ interface Props {}
 
 const Navbar = (props: Props) => {
   return (
-    <nav>
+    <nav className="border-grid sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ">
       <div className="relative container mx-auto p-6 ">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-20">
@@ -18,13 +18,13 @@ const Navbar = (props: Props) => {
               {/* <a href="" className="text-black hover:text-darkBlue">
                 Dashboard
               </a> */}
-              <Link to="/search" className="text-black hover:text-darkBlue">
+              <Link to="/search" className="text-lightGreen hover:text-darkGreen">
                 Search
               </Link>
             </div>
           </div>
           <div className="hidden lg:flex items-center space-x-6 text-back">
-            <div className="hover:text-darkBlue">Login</div>
+            <div className="text-lightGreen hover:text-lightGreen">Login</div>
             {/* <a
               href=""
               className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"

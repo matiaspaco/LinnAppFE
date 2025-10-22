@@ -32,7 +32,7 @@ const configs = [
   },
   {
     label: "Net Income Ratio",
-    render: (company: CompanyIncomeStatement) => company.netIncomeRatio,
+    render: (company: CompanyIncomeStatement) => company.netIncome / company.revenue,
   },
   {
     label: "Earnings Per Share",
@@ -40,19 +40,19 @@ const configs = [
   },
   {
     label: "Earnings Per Diluted",
-    render: (company: CompanyIncomeStatement) => company.epsdiluted,
+    render: (company: CompanyIncomeStatement) => company.epsDiluted,
   },
   {
     label: "Gross Profit Ratio",
-    render: (company: CompanyIncomeStatement) => company.grossProfitRatio,
+    render: (company: CompanyIncomeStatement) => company.grossProfit / company.revenue,
   },
   {
     label: "Opearting Income Ratio",
-    render: (company: CompanyIncomeStatement) => company.operatingIncomeRatio,
+    render: (company: CompanyIncomeStatement) => company.operatingIncome / company.revenue,
   },
   {
     label: "Income Before Taxes Ratio",
-    render: (company: CompanyIncomeStatement) => company.incomeBeforeTaxRatio,
+    render: (company: CompanyIncomeStatement) => company.incomeBeforeTax / company.revenue,
   },
   {
     label: "Income Before Tax",

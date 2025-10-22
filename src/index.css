@@ -6,16 +6,73 @@
 
 /* test mprx */
 
-body {
+html, body, #root {
     /* display: grid;
     place-items: center;
     height: 100vh;
     margin: 0; */
     /* background: linear-gradient(to right, #114357, #F29492, #f64f59); */
-    background-image: url('header.png');
+    background-image: url('https://framerusercontent.com/images/gDLZ3lXTL8phROUo0iUFtr1HEM.svg');
+    /* background-image: url('https://framerusercontent.com/images/ShqSGlr5lqRcLSIT8BxEhFZkejs.svg'); */
+    /* background-image: url('header.png'); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     font-family: 'Poppins', sans-serif;
+    overscroll-behavior: none;
 }
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.14 0 286);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.14 0 286);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.14 0 286);
+    --primary: oklch(0.21 0.01 286);
+    --primary-foreground: oklch(0.99 0 0);
+    --secondary: oklch(0.97 0 286);
+    --secondary-foreground: oklch(0.21 0.01 286);
+    --muted: oklch(0.97 0 286);
+    --muted-foreground: oklch(0.55 0.01 286);
+    --accent: oklch(0.97 0 286);
+    --accent-foreground: oklch(0.21 0.01 286);
+    --destructive: oklch(0.64 0.21 25);
+    --destructive-foreground: oklch(0.99 0 0);
+    --border: oklch(0.92 0 286);
+    --input: oklch(0.87 0.01 286);
+    --ring: oklch(0.14 0 286);
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    --background: oklch(0.14 0 286);
+    --foreground: oklch(0.99 0 0);
+    --card: oklch(0.14 0 286);
+    --card-foreground: oklch(0.99 0 0);
+    --popover: oklch(0.14 0 286);
+    --popover-foreground: oklch(0.99 0 0);
+    --primary: oklch(0.99 0 0);
+    --primary-foreground: oklch(0.21 0.01 286);
+    --secondary: oklch(0.27 0.01 286);
+    --secondary-foreground: oklch(0.99 0 0);
+    --muted: oklch(0.21 0.01 286);
+    --muted-foreground: oklch(0.65 0.01 286);
+    --accent: oklch(0.21 0.01 286);
+    --accent-foreground: oklch(0.99 0 0);
+    --destructive: oklch(0.64 0.21 25);
+    --destructive-foreground: oklch(0.99 0 0);
+    --border: oklch(0.27 0.01 286);
+    --input: oklch(0.27 0.01 286);
+    --ring: oklch(0.87 0.01 286);
+  }
+
+  @keyframes neonGlow {
+    0% { box-shadow: 0 0 10px #00e6ff, 0 0 20px #00e6ff; }
+    50% { box-shadow: 0 0 15px #00e6ff, 0 0 30px #00e6ff; }
+    100% { box-shadow: 0 0 10px #00e6ff, 0 0 20px #00e6ff; }
+  }
+  .animate-neon-border {
+    animation: neonGlow 1.5s infinite alternate;
+  }

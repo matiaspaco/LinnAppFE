@@ -3,7 +3,7 @@ import { CompanySearch } from '../../company';
 import { searchCompanies } from '../../api';
 import Navbar from '../../Components/Navbar/Navbar';
 import Hero from '../../Components/Hero/Hero';
-import Search from '../../Components/Search/Search';
+import Search2 from '../../Components/Search/Search';
 import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio';
 import CardList from '../../Components/CardList/CardList';
 
@@ -64,7 +64,7 @@ const SearchPage = (props: Props) => {
     <div className="App">
       {/* <Navbar/> */}
       {/* <Hero/> */}
-      <Search onSearchSubmit={onSearchSubmit} 
+      <Search2 onSearchSubmit={onSearchSubmit} 
       search={search} 
       handleSearchChange={handleSearchChange}/>
 

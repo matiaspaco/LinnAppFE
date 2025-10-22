@@ -7,7 +7,7 @@ type Props = {
 }
 
 const TenKFinderItem = ({tenK}: Props) => {
-    const fillingDate = new Date(tenK.fillingDate).getFullYear();
+    const fillingDate = new Date(tenK.filingDate).getFullYear();
   return (
     <Link reloadDocument to={tenK.finalLink} type="button" 
     className="inline-flex items-center px-4 py-2 text-sm font-medium 

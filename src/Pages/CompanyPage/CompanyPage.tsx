@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { CompanyProfile } from '../../company';
-import { getCompanyProfile } from '../../api';
+import { getCompanyProfile, getKeyMetrics } from '../../api';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import CompanyDashBoard from '../../Components/CompanyDashboard/CompanyDashBoard';
 import Tile from '../../Components/Tile/Tile';
@@ -13,14 +13,42 @@ interface Props {}
 const CompanyPage = (props: Props) => {
   let {ticker} = useParams();
   const[company, setCompany] = useState<CompanyProfile>();
+  const[hasKeymetrics, setHasKeyMetrics] = useState<boolean | null>(null);
 
   useEffect(() => {
     const getProfileInit = async() => {
         const result = await getCompanyProfile(ticker!);
         setCompany(result?.data[0]);
+
+        try {
+          const km = await getKeyMetrics(ticker!);
+          // si la API devuelve datos válidos, habilitamos
+          if (km?.data && km.data.length > 0) {
+            setHasKeyMetrics(true);
+          } else {
+            // si no hay data, lo tratamos como "requiere premium"
+            setHasKeyMetrics(false);
+          }
+        } catch (err: any) {
+          // si el endpoint responde con 402 lo detectamos aquí
+          if (err?.response?.status === 402) {
+            setHasKeyMetrics(false);
+          } else {
+            // error de red u otro -> por seguridad lo dejamos como "no disponible"
+            console.error("getKeyMetrics error:", err);
+            setHasKeyMetrics(false);
+          }
+        }
     }
+
+
+
+
     getProfileInit();
   }, [])
+
+//const disabledClass = !isPremium ? "pointer-events-none opacity-50" : "";
+//${disabledClass}
 
   return (
     <>
@@ -29,14 +57,14 @@ const CompanyPage = (props: Props) => {
     // (<div>{company.companyName}</div>) 
     <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
 
-        <Sidebar></Sidebar>
+        <Sidebar hasKeyMetrics={hasKeymetrics}></Sidebar>
 
         <CompanyDashBoard ticker={ticker!}>
             <Tile Title="Company Name" SubTitle={company.companyName}></Tile>
             <Tile Title="Price" SubTitle={company.price.toString()}></Tile>
             <Tile Title="Sector" SubTitle={company.sector}></Tile>
             {/* <Tile Title="DCF" SubTitle={company.dcf.toString()}></Tile> */}
-            <Tile Title="Market Cap" SubTitle={company.mktCap.toString()}></Tile>
+            <Tile Title="Market Cap" SubTitle={company.marketCap.toString()}></Tile>
             {/* <CompFinder ticker={company.symbol}/> */}
             <TenKFinder ticker={company.symbol}/>
 
