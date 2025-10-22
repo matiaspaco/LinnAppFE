@@ -1,7 +1,9 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
+import "react-toastify/dist/ReactToastify.css"
 import { Outlet } from 'react-router';
+import { ToastContainer } from 'react-toastify';
 // import CardList from './Components/CardList/CardList';
 // import Search from './Components/Search/Search';
 // import { CompanySearch } from './company';
@@ -60,7 +62,10 @@ function App() {
     <>
     <Navbar/>
     <Outlet/>
+    <ToastContainer/>  
     </>
+    //It's required to add the ToastContainer in the App.tsx in order to implement the toast called from the ErrorHandler file
+
     // <div className="App">
     //   <Navbar/>
     //   <Hero/>
