@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar/Navbar';
 import "react-toastify/dist/ReactToastify.css"
 import { Outlet } from 'react-router';
 import { ToastContainer } from 'react-toastify';
+import { UserProvider } from './Context/UseAuth';
 // import CardList from './Components/CardList/CardList';
 // import Search from './Components/Search/Search';
 // import { CompanySearch } from './company';
@@ -59,12 +60,15 @@ function App() {
 //   };
 
   return (
+    //UserProvider is placed here since it's required to be father so all the child components can access the atributes globally 
     <>
-    <Navbar/>
-    <Outlet/>
-    <ToastContainer/>  
+    <UserProvider>
+      <Navbar/>
+      <Outlet/>
+      <ToastContainer/>
+    </UserProvider>  
     </>
-    //It's required to add the ToastContainer in the App.tsx in order to implement the toast called from the ErrorHandler file
+    //It's required to add the ToastContainer in the App.tsx in order to implement the toast called from the ErrorHandler file and the UseAuth.tsx file
 
     // <div className="App">
     //   <Navbar/>
