@@ -98,7 +98,7 @@ export const UserProvider = ({children}: Props) => {//the UserProvider is the co
     }
     //the UserContext.Provider define the data that will be able globally in this case loginUser, user, token, etc
     return (
-        <UserContext.Provider value={{loginUser, user, token, logout, isLoggedIn, registerUser}}> sss
+        <UserContext.Provider value={{loginUser, user, token, logout, isLoggedIn, registerUser}}>
             {isReady ? children : null}
         </UserContext.Provider>
     );
