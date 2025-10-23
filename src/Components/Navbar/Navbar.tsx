@@ -1,11 +1,14 @@
 import React from "react";
 import logo from "./logo1.png";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Context/UseAuth";
 
 interface Props {}
 
 const Navbar = (props: Props) => {
+  const {isLoggedIn, user, logout} = useAuth();
+  const navigate = useNavigate();
   return (
     <nav className="border-grid sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ">
       <div className="relative container mx-auto p-6 ">
@@ -23,17 +26,30 @@ const Navbar = (props: Props) => {
               </Link>
             </div>
           </div>
-          <div className="hidden lg:flex items-center space-x-6 text-back">
-            <div className="text-lightGreen hover:text-lightGreen">Login</div>
+          {isLoggedIn() ? 
+                (<div className="hidden lg:flex items-center space-x-6 text-back">
+                  <div className="text-lightGreen hover:text-lightGreen">Welcome, {user?.username}</div>
+                  <button onClick={logout} className="px-8 py-3 font-bold text-white bg-lightGreen border border-gray-300 rounded shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    Logout
+                  </button>
+                </div>) : 
+                (<div className="hidden lg:flex items-center space-x-6 text-back">
+                  <Link to="/login" className="text-lightGreen hover:text-lightGreen">Login</Link>
+                  <button onClick={() => navigate("/register")}  className="px-8 py-3 font-bold text-white bg-lightGreen border border-gray-300 rounded shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    Signup
+                  </button>
+                </div>)}
+          {/* {<div className="hidden lg:flex items-center space-x-6 text-back">} */}
+            {/* {<div className="text-lightGreen hover:text-lightGreen">Login</div>} */}
             {/* <a
               href=""
               className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
             >
               Signup
             </a> */}
-          <button className="px-8 py-3 font-bold text-white bg-lightGreen border border-gray-300 rounded shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+          {/* {<button className="px-8 py-3 font-bold text-white bg-lightGreen border border-gray-300 rounded shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
           Signup
-          </button>
+          </button>} */}
       {/* <button className="relative px-10 py-3 font-medium text-white transition duration-300 ease-out group">
         <span className="absolute inset-0 w-full h-full rounded-lg opacity-50 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"></span>
         <span className="absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out opacity-70 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 group-hover:opacity-100 group-hover:rotate-180"></span>
@@ -56,7 +72,7 @@ const Navbar = (props: Props) => {
         <span className="absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 group-hover:opacity-0"></span>
         <span className="relative">Aurora</span>
       </button> */}
-          </div>
+          {/* {</div>} */}
         </div>
       </div>
     </nav>
