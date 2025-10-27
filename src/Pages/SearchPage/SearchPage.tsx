@@ -1,4 +1,4 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
 import { CompanySearch } from '../../company';
 import { searchCompanies } from '../../api';
 import Navbar from '../../Components/Navbar/Navbar';
@@ -6,30 +6,63 @@ import Hero from '../../Components/Hero/Hero';
 import Search2 from '../../Components/Search/Search';
 import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio';
 import CardList from '../../Components/CardList/CardList';
+import { PortfolioGet } from '../../Models/Portfolio';
+import { portfolioCreateApi, portfolioDeleteApi, portfolioGetApi } from '../../Services/PortfolioService';
+import { toast } from 'react-toastify';
 
 interface Props {}
 
 const SearchPage = (props: Props) => {
 
-      const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
+
       const [search, setSearch] = useState<string>("");
+      const [portfolioValues, setPortfolioValues] = useState<PortfolioGet[] | null>([]);//We upadte the type of the hook to recibe a specific model
       const [searchResult, setSearchResult] = useState <CompanySearch[]>([]);
       const [serverError, setServerError] = useState<string | null>(null);
-    
+
+
+      useEffect(() => {
+        getPortfolio();
+      }, []);
+
       const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
         console.log(e);
       }
+
+      const getPortfolio = () =>{
+        portfolioGetApi()
+        .then((res) => {
+          if (res?.data) {
+            setPortfolioValues(res?.data);
+          }
+        })
+        .catch((e) => {
+          toast.warning("Could not get portfolio values!")
+        })
+      }
+
+
     //#region Create section
       const onPortfolioCreate = (e: any) => {
         e.preventDefault();
-        const exist = portfolioValues.find((value) => value === e.target[0].value);
-        if (exist) {
-          return;
-        }
-        const updatePortfolio = [...portfolioValues, e.target[0].value]
-        setPortfolioValues(updatePortfolio);
-      }
+        portfolioCreateApi(e.target[0].value)
+        .then((res) => {
+          if (res?.status === 204) {
+            toast.success("Stock added to portfolio!")
+            getPortfolio();
+          }
+        }).catch((e) => {
+          toast.warning("Could not create portfolio item!");
+        })
+        //REFACTOR APPLIED UP
+        // {const exist = portfolioValues?.find((value) => value === e.target[0].value);
+        // if (exist) {
+        //   return;
+        // }
+        // const updatePortfolio = [...portfolioValues!, e.target[0].value]
+        // setPortfolioValues(updatePortfolio);}
+      };
       //Flujo de onPortfolioCreate el mismo se ejecuta cuando se hace click en el "ADD" button ya que el onsubmit=onPortfolioCreate se encuentra en el componente hijo
       //si tiene parametros que se envian hasta el SearchPage.tsx los mismos pueden estar declarados como hooks es decir estados si viene desde el componente hijo se
       //captura el estado en PortfolioValues sino el estado inicial es vacio, despues de esto se acciona la logica asociada al evento que viene del componente hijo
@@ -41,11 +74,18 @@ const SearchPage = (props: Props) => {
     //#region delete Section
     const onPortFolioDelete = (e: any) => {
       e.preventDefault();
-      const removed = portfolioValues.filter((value) => {
-        return value !== e.target[0].value;
-      });
-      setPortfolioValues(removed);
-    }
+      portfolioDeleteApi(e.target[0].value)
+      .then((res) => {
+        if (res?.status === 200) {
+        toast.success("Stock deleted from portfolio!")
+        getPortfolio();
+      }});
+      //REFACTOR UP IN ORDER TO CONSUME THE API
+      // const removed = portfolioValues?.filter((value) => {
+      //   return value !== e.target[0].value;
+      // });
+      // setPortfolioValues(removed!);
+    };
     //#endregion
     
     
@@ -70,7 +110,7 @@ const SearchPage = (props: Props) => {
 
       {serverError && <h1>{serverError}</h1>}
 
-      <ListPortfolio portFolioValues = {portfolioValues} 
+      <ListPortfolio portFolioValues = {portfolioValues!} 
       onPortfolioDelete = {onPortFolioDelete}/>
 
      <CardList searchResults={searchResult} 

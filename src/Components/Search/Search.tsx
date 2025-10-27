@@ -37,20 +37,8 @@ const Search2: React.FC<Props> = ({onSearchSubmit,search,handleSearchChange}: Pr
   return (
 
     <>
-        <div className="flex flex-wrap justify-center gap-4 p-4">
-      {Array.from({ length: 12 }).map((_, index) => (
-        <div
-          key={index}
-          className={`flex w-40 h-40 items-center justify-center rounded-lg bg-green-500 text-white text-xl font-bold ${
-            (index % 4 === 1 || index % 4 === 3) ? "self-end" : "self-start"
-          }`}
-        >
-          Card {index + 1}
-        </div>
-      ))}
-    </div>
 
-    <div className="flex flex-wrap justify-center gap-6 p-6">
+    {/* <div className="flex flex-wrap justify-center gap-6 p-6">
       {Array.from({ length: 12 }).map((_, index) => (
         <div
           key={index}
@@ -64,9 +52,9 @@ const Search2: React.FC<Props> = ({onSearchSubmit,search,handleSearchChange}: Pr
           <span className="relative z-10">Card {index + 1}</span>
         </div>
       ))}
-    </div>
+    </div> */}
 
-    <div className="flex flex-wrap justify-center gap-6 p-6">
+    {/* <div className="flex flex-wrap justify-center gap-6 p-6">
       {Array.from({ length: 12 }).map((_, index) => (
         <div
           key={index}
@@ -76,17 +64,14 @@ const Search2: React.FC<Props> = ({onSearchSubmit,search,handleSearchChange}: Pr
             ${(index % 4 === 1 || index % 4 === 3) ? "self-end" : "self-start"}
           `}
         >
-          {/* Efecto de luz fluorescente */}
           <div className="absolute inset-0 bg-green-400 opacity-30 blur-3xl rounded-lg"></div>
           <div className="absolute inset-0 bg-green-400 opacity-20 blur-[60px] rounded-lg"></div>
-
-          {/* Contenido */}
           <span className="relative z-10">Card {index + 1}</span>
         </div>
       ))}
-    </div>
+    </div> */}
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
+    {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
       {Array.from({ length: 8 }).map((_, index) => (
         <div
           key={index}
@@ -94,19 +79,17 @@ const Search2: React.FC<Props> = ({onSearchSubmit,search,handleSearchChange}: Pr
             backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg
             transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_40px_#00ff7f]"
         >
-          {/* Efecto de luz verde detrás */}
           <div className="absolute inset-0 bg-green-400 opacity-30 blur-3xl rounded-2xl"></div>
           <div className="absolute inset-0 bg-green-400 opacity-20 blur-[80px] rounded-2xl"></div>
 
-          {/* Contenido de la Card */}
           <span className="relative z-10">Lemon Card {index + 1}</span>
         </div>
       ))}
-    </div>
+    </div> */}
 
 
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
+    {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
       {Array.from({ length: 8 }).map((_, index) => (
         <div
           key={index}
@@ -114,15 +97,13 @@ const Search2: React.FC<Props> = ({onSearchSubmit,search,handleSearchChange}: Pr
             backdrop-blur-lg bg-white/10 border border-green-400 shadow-[0_0_20px_#00ff7f] 
             transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_40px_#00ff7f]"
         >
-          {/* Efecto de luz verde detrás */}
           <div className="absolute inset-0 bg-green-400 opacity-30 blur-3xl rounded-2xl"></div>
           <div className="absolute inset-0 bg-green-400 opacity-20 blur-[80px] rounded-2xl"></div>
 
-          {/* Contenido de la Card */}
           <span className="relative z-10">Lemon Card {index + 1}</span>
         </div>
       ))}
-    </div>
+    </div> */}
 
 
 

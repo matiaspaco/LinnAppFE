@@ -57,8 +57,10 @@ export const UserProvider = ({children}: Props) => {//the UserProvider is the co
                 };
                 localStorage.setItem("user", JSON.stringify(userObj));
                 setToken(objResponse?.data.token!);
-                setUser(userObj!);
+                setUser(userObj!);           
                 toast.success("Register Success!");
+                
+                axios.defaults.headers.common["Authorization"] = "Bearer " + objResponse?.data.token;//Added to filter the comments for the current user
                 navigate("/search")
             }
         }).catch(e => toast.warning("Server error occured."))
@@ -77,8 +79,10 @@ export const UserProvider = ({children}: Props) => {//the UserProvider is the co
                 };
                 localStorage.setItem("user", JSON.stringify(userObj));
                 setToken(objResponse?.data.token!);
-                setUser(userObj!);
+                setUser(userObj!);                
                 toast.success("Login Success!");
+
+                axios.defaults.headers.common["Authorization"] = "Bearer " + objResponse?.data.token;//Added to filter the comments for the current user
                 navigate("/search")
             }
         }).catch(e => toast.warning("Server error occured."))
@@ -94,6 +98,8 @@ export const UserProvider = ({children}: Props) => {//the UserProvider is the co
         localStorage.removeItem("user");
         setUser(null);
         setToken("");
+
+        delete axios.defaults.headers.common["Authorization"];// This update the autorizations of the user to delete it
         navigate("/");
     }
     //the UserContext.Provider define the data that will be able globally in this case loginUser, user, token, etc
